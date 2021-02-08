@@ -1,6 +1,5 @@
 from django.template import Library
 from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 
 from ..logging import logger
 from ..registry import registry
@@ -31,10 +30,7 @@ def do_ssi_include(name):
     if name not in registry:
         logger.warning('view `%s` is not registered' % name)
     url = reverse('ssi_views:router', kwargs={'name': name})
-    return format_html(
-        '<!--# include virtual="{}" -->',
-        url
-    )
+    return format_html('<!--# include virtual="{}" -->', url)
 
 
 if jinja2 is not None:
