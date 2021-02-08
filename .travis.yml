@@ -3,23 +3,19 @@ python:
 - 3.8
 - 3.7
 - 3.6
-
 before_install:
 - pip install twine
 - pip install -U pip setuptools wheel tox-travis
 - pip install -r ./requirements_dev.txt
-
 branches:
   only:
   - master
-  - '/^v?\d(\.\d+)+$/'
-
+  - "/^v?\\d(\\.\\d+)+$/"
 script:
 - python setup.py sdist
 - python setup.py bdist_wheel
 - twine check dist/*
 - tox
-
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
@@ -27,8 +23,8 @@ deploy:
   skip_cleanup: true
   user: __token__
   password:
-    secure: PLEASE_REPLACE_ME
+    secure: i36GGPPSLvrbJ8BIxYyNg5Xmd1jhVWtunLv7s1yvtQ3RBx9CodHwjgSP80j2HghXH9eYCwkZ/rPlCWgHLvG04NYVJNflsKFGLZmay4vfF8rBUyQ4bX/BC9f7lQbCgoSoW9BkNOR0YrNB/QlNAKOFM/xD5pVPqZfW+YonhnP3btQEYsHOgYe9HvQgUDlCS1fKb4AXQvgd9FG014pXGKmbl+KCJ0iArLMtgvMbjH+CAXW8M3993pQgBnizor8qVHwa+5K0SYRF2eOPejXXpT1lDTLjNKEUHVan7x1M79u67As6fVDG/Iz/pI30TsK0iZMkqdmuSrDaW9zMp1XY81oNxiycbTiy3/3maUFccaulUkhRhD9iY+Pp+S8YzmFnJNNs4yG0cLYVRUyT22xoT9M+o/z3qU3uFTfdsvjqfDJQIGyqqQVFzpmL722vjxb2ZORSXs+SfdHLVKbhc/opmfTGgVunBADwGBQ+YUOkjjTxbLqd33NoHlzVi1P93yAzLNCnmqd70ifC/7PcsTgJ+Yibv0NpwYbQJ9juxxj9uc6wryWkXFNwjbOq4Y9rObNndv1BZgVg7DQHruuZEGQRqLT+O/+c4knmTmeWUhrqVlbQrHEkf9egliseN48UNvWtHq0O4WjuKMdH/h4a2t1svz7mqhY8TumC5NqBTmtCvFUWgcQ=
   on:
     repo: dldevinc/ssi-views
-    condition: $TRAVIS_PYTHON_VERSION = 3.8
+    condition: "$TRAVIS_PYTHON_VERSION = 3.8"
     tags: true
