@@ -5,7 +5,7 @@ from app import views
 
 def test_404():
     client = Client()
-    response = client.get('/ajax/unknown/')
+    response = client.get('/ssi/unknown/')
     assert response.status_code == 404
 
 
