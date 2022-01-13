@@ -2,7 +2,6 @@
 A simple Django application to process SSI includes
 
 [![PyPI](https://img.shields.io/pypi/v/ssi-views.svg)](https://pypi.org/project/ssi-views/)
-[![Build Status](https://travis-ci.org/dldevinc/ssi-views.svg?branch=master)](https://travis-ci.org/dldevinc/ssi-views)
 
 ## Compatibility
 * `django` >= 1.11
