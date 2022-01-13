@@ -44,7 +44,7 @@ urlpatterns = patterns('',
 ```
 
 ## Usage
-#### @ssi_view
+#### @ssi_view('name')
 Use this decorator to register your views (Function-Based or Class-Based).
 ```python
 from ssi_views.decorators import ssi_view
@@ -57,7 +57,7 @@ def form_view(request):
 class SSIFormView(FormView):
     ...
 ```
-**NOTE**: Each view must have a **unique** name.
+**NOTE**: The specified name has to be unique.
 
 You can combine `ssi_view` with other decorators.
 ```python
@@ -68,15 +68,8 @@ def csrf_exempt_view(request):
     # ...
 ```
 
-#### {% ssi_url %}
-```djangotemplate
-{% load ssi_views %}
-
-<!--# include virtual="{% ssi_url 'myapp.form' %}" -->
-```
-
 #### {% ssi_include %}
-Template tag to render SSI `include` directive.
+Template tag to render `include virtual` directive.
 ```djangotemplate
 {% load ssi_views %}
 
@@ -88,7 +81,19 @@ Output:
 <!--# include virtual="/ssi/myapp.form/" -->
 ```
 
-#### Multiple names for the same view
+#### {% ssi_url %}
+This tag is used to add SSI URLs in the template files:
+
+```djangotemplate
+{% load ssi_views %}
+
+<!--# include virtual="{% ssi_url 'myapp.form' %}" -->
+```
+
+#### Multiple names
+
+You can have multiple names for same view:
+
 ```python
 from ssi_views.decorators import ssi_view
 
@@ -126,6 +131,6 @@ in a virtualenv and set up for development:
 ```shell script
 virtualenv .venv
 source .venv/bin/activate
-pip install -r ./requirements_dev.txt
+pip install -r ./requirements.txt
 pre-commit install
 ```
