@@ -1,8 +1,8 @@
 from django.http import HttpResponse
-from django.views.generic import View, TemplateView
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.cache import never_cache
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.cache import cache_control, never_cache
+from django.views.decorators.http import require_GET
+from django.views.generic import TemplateView, View
+
 from ssi_views.decorators import ssi_view
 
 
@@ -26,14 +26,14 @@ def get_view(request):
     return HttpResponse(b'She\'s coming in twelve-thirty flight')
 
 
-@require_POST
-@ssi_view('tests.method-post')
-def post_view(request):
+@ssi_view('tests.cached')
+@cache_control(max_age=0, s_maxage=30, must_revalidate=True)
+def cached_view(request):
     return HttpResponse(b'Her moonlit wings reflect the stars that guide me towards salvation')
 
 
 @never_cache
-@ssi_view('tests.decorated')
+@ssi_view('tests.never_cached')
 def decorated_view(request):
     return HttpResponse(b'I stopped an old man along the way')
 
@@ -46,13 +46,6 @@ def multinamed_view(request):
 @ssi_view(['tests.foo', 'tests.bar', 'tests.baz'])
 def another_multinamed_view(request):
     return HttpResponse(b'He turned to me as if to say: Hurry boy, it\'s waiting there for you')
-
-
-@csrf_exempt
-@require_POST
-@ssi_view('tests.csrf_exempt')
-def csrf_exempt_view(request):
-    return HttpResponse(b'It\'s gonna take a lot to drag me away from you')
 
 
 @ssi_view('tests.simple_cbv')

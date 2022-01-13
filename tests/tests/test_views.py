@@ -1,6 +1,5 @@
 import django
 from django.test import Client
-from app import views
 
 
 def test_404():
@@ -29,19 +28,19 @@ def test_get():
     assert head_response.status_code == 405
 
 
-def test_post():
+def test_cached():
     client = Client()
-    get_response = client.get('/ssi/tests.method-post/')
-    assert get_response.status_code == 405
+    response = client.get('/ssi/tests.cached/')
+    assert response.status_code == 200
+    assert response.content == b'Her moonlit wings reflect the stars that guide me towards salvation'
 
-    post_response = client.post('/ssi/tests.method-post/')
-    assert post_response.status_code == 200
-    assert post_response.content == b'Her moonlit wings reflect the stars that guide me towards salvation'
+    cache_directives = set(map(str.strip, str(response['Cache-Control']).split(',')))
+    assert cache_directives == {'max-age=0', 's-maxage=30', 'must-revalidate'}
 
 
 def test_decorators():
     client = Client()
-    response = client.get('/ssi/tests.decorated/')
+    response = client.get('/ssi/tests.never_cached/')
     assert response.status_code == 200
     assert response.content == b'I stopped an old man along the way'
 
@@ -50,13 +49,6 @@ def test_decorators():
         assert cache_directives == {'max-age=0', 'no-cache', 'no-store', 'must-revalidate', 'private'}
     else:
         assert cache_directives == {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'}
-
-
-def test_csrf_exempt():
-    client = Client(enforce_csrf_checks=True)
-    response = client.post('/ssi/tests.csrf_exempt/')
-    assert response.status_code == 200
-    assert response.content == b'It\'s gonna take a lot to drag me away from you'
 
 
 def test_cbv():

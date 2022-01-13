@@ -1,1 +1,12 @@
+{% load ssi_views %}
+
 <h1>Index page</h1>
+
+<ol>
+  <li>{% ssi_include "tests.simple" %}</li>
+  <li>{% ssi_include "tests.method-get" %}</li>
+  <li>{% ssi_include "tests.cached" %}</li>
+  <li>{% ssi_include "tests.never_cached" %}</li>
+  <li>{% ssi_include "tests.foo" %}</li>
+  <li>{% ssi_include "tests.simple_cbv" %}</li>
+</ol>
