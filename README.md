@@ -7,7 +7,7 @@ A simple Django application to process SSI includes
 
 ## Compatibility
 * `django` >= 1.11
-* `python` >= 3.5
+* `python` >= 3.6
 
 ## Features
 * Supported Function-Based and Class-Based Views
