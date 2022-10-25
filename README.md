@@ -1,4 +1,5 @@
 # ssi-views
+
 A simple Django application to process SSI includes
 
 [![PyPI](https://img.shields.io/pypi/v/ssi-views.svg)](https://pypi.org/project/ssi-views/)
@@ -6,15 +7,18 @@ A simple Django application to process SSI includes
 [![Software license](https://img.shields.io/pypi/l/ssi-views.svg)](https://pypi.org/project/ssi-views/)
 
 ## Compatibility
-* `django` >= 1.11
-* `python` >= 3.6
+
+-   `django` >= 1.11
+-   `python` >= 3.6
 
 ## Features
-* Supported Function-Based and Class-Based Views
-* One URL pattern ~~to rule them all~~ for all SSI views
-* Jinja2 support
+
+-   Supported Function-Based and Class-Based Views
+-   One URL pattern ~~to rule them all~~ for all SSI views
+-   Jinja2 support
 
 ## Installation
+
 Install the package via Pip:
 
 ```
@@ -45,8 +49,11 @@ urlpatterns = patterns('',
 ```
 
 ## Usage
+
 #### @ssi_view('name')
+
 Use this decorator to register your views (Function-Based or Class-Based).
+
 ```python
 from ssi_views.decorators import ssi_view
 
@@ -58,9 +65,11 @@ def form_view(request):
 class SSIFormView(FormView):
     ...
 ```
+
 **NOTE**: The specified name has to be unique.
 
 You can combine `ssi_view` with other decorators.
+
 ```python
 @csrf_exempt
 @require_POST
@@ -70,7 +79,9 @@ def csrf_exempt_view(request):
 ```
 
 #### {% ssi_include %}
+
 Template tag to render `include virtual` directive.
+
 ```djangotemplate
 {% load ssi_views %}
 
@@ -78,11 +89,13 @@ Template tag to render `include virtual` directive.
 ```
 
 Output:
+
 ```html
 <!--# include virtual="/ssi/myapp.form/" -->
 ```
 
 #### {% ssi_url %}
+
 This tag is used to add SSI URLs in the template files:
 
 ```djangotemplate
@@ -104,7 +117,9 @@ def example_view(request):
 ```
 
 ## Jinja2 support
+
 Enable Jinja2 extension
+
 ```python
 TEMPLATES = [
     {
@@ -122,13 +137,16 @@ TEMPLATES = [
 **NOTE**: If you are using [django-jinja](https://niwinz.github.io/django-jinja/latest/), you don't need to do this.
 
 The usage is similar to Django, except that `ssi_url` is a global function:
+
 ```jinja2
 <!--# include virtual="{{ ssi_url('myapp.form') }}" -->
 ```
 
 ## Development and Testing
+
 After cloning the Git repository, you should install this
 in a virtualenv and set up for development:
+
 ```shell script
 virtualenv .venv
 source .venv/bin/activate
