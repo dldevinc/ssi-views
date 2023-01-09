@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.4.1](https://github.com/dldevinc/ssi-views/tree/v0.4.1) - 2023-01-09
+
+### Features
+
+- Add Python 3.11 support (no code changes were needed, but now we test this release).
+
 ## [0.4.0](https://github.com/dldevinc/ssi-views/tree/v0.4.0) - 2022-08-15
 
 ### Features
