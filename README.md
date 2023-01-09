@@ -106,7 +106,7 @@ This tag is used to add SSI URLs in the template files:
 
 #### Multiple names
 
-You can have multiple names for same view:
+You can have multiple names for the same view:
 
 ```python
 from ssi_views.decorators import ssi_view
