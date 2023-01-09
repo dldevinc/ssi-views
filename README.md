@@ -68,7 +68,7 @@ class SSIFormView(FormView):
 
 **NOTE**: The specified name has to be unique.
 
-You can combine `ssi_view` with other decorators.
+You can combine `ssi_view` with other decorators:
 
 ```python
 @csrf_exempt
@@ -80,7 +80,7 @@ def csrf_exempt_view(request):
 
 #### {% ssi_include %}
 
-Template tag to render `include virtual` directive.
+Template tag to render `<!--# include virtual="..." -->` directive.
 
 ```djangotemplate
 {% load ssi_views %}
