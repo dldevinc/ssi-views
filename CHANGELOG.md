@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.5.0](https://github.com/dldevinc/ssi-views/tree/v0.5.0) - 2023-12-20
+
+### ⚠ BREAKING CHANGES
+
+-   Dropped support for Python 3.6.
+-   Dropped support for Django < 3.2.
+-   Added support for Django 5.0.
+-   Added support for Python 3.12.
+
 ## [0.4.1](https://github.com/dldevinc/ssi-views/tree/v0.4.1) - 2023-01-09
 
 ### Features
 
-- Add Python 3.11 support (no code changes were needed, but now we test this release).
+-   Add Python 3.11 support (no code changes were needed, but now we test this release).
 
 ## [0.4.0](https://github.com/dldevinc/ssi-views/tree/v0.4.0) - 2022-08-15
 

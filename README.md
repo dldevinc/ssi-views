@@ -8,8 +8,8 @@ A simple Django application to process SSI includes
 
 ## Compatibility
 
--   `django` >= 1.11
--   `python` >= 3.6
+-   `django` >= 3.2
+-   `python` >= 3.7
 
 ## Features
 
@@ -29,39 +29,36 @@ Add it to your `INSTALLED_APPS` list:
 
 ```python
 INSTALLED_APPS = (
-    ...
-    'ssi_views',
+    # ...
+    "ssi_views",
+    # ...
 )
 ```
 
 Add `ssi_views.urls` to your URLconf:
 
 ```python
-urlpatterns = patterns('',
-    ...
+from django.urls import include, path
 
-    # Django >= 2.0
-    path('ssi/', include('ssi_views.urls')),
-
-    # Django < 2.0
-    url(r'^ssi/', include('ssi_views.urls', namespace='ssi_views')),
-)
+urlpatterns = [
+    path("ssi/", include("ssi_views.urls")),
+]
 ```
 
 ## Usage
 
-#### @ssi_view('name')
+#### @ssi_view("name")
 
 Use this decorator to register your views (Function-Based or Class-Based).
 
 ```python
 from ssi_views.decorators import ssi_view
 
-@ssi_view('myapp.form')
+@ssi_view("myapp.form")
 def form_view(request):
     ...
 
-@ssi_view('myapp.form_cbv')
+@ssi_view("myapp.form_cbv")
 class SSIFormView(FormView):
     ...
 ```
@@ -73,7 +70,7 @@ You can combine `ssi_view` with other decorators:
 ```python
 @csrf_exempt
 @require_POST
-@ssi_view('myapp.contact_form')
+@ssi_view("myapp.contact_form")
 def csrf_exempt_view(request):
     # ...
 ```
@@ -111,7 +108,7 @@ You can have multiple names for the same view:
 ```python
 from ssi_views.decorators import ssi_view
 
-@ssi_view(['myapp.form', 'myapp.fallback'])
+@ssi_view(["myapp.form", "myapp.fallback"])
 def example_view(request):
     ...
 ```
@@ -123,11 +120,11 @@ Enable Jinja2 extension
 ```python
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'OPTIONS': {
-            'extensions': [
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
+        "OPTIONS": {
+            "extensions": [
                 ...
-                'ssi_views.templatetags.ssi_views.SSIIncludeExtension',
+                "ssi_views.templatetags.ssi_views.SSIIncludeExtension",
             ]
         }
     }

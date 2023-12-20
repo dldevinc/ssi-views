@@ -1,2 +1,1 @@
-__version__ = "0.4.1"
-default_app_config = "ssi_views.apps.Config"
+__version__ = "0.5.0"
