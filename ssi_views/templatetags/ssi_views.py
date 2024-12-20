@@ -23,7 +23,7 @@ def do_ssi_url(name):
 @register.simple_tag(name="ssi_include")
 def do_ssi_include(name):
     if name not in registry:
-        logger.warning('view `%s` is not registered' % name)
+        logger.warning("view `%s` is not registered" % name)
     url = reverse("ssi_views:router", kwargs={"name": name})
     return format_html('<!--# include virtual="{}" -->', url)
 

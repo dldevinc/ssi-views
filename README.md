@@ -1,6 +1,6 @@
 # ssi-views
 
-A simple Django application to process SSI includes
+A simple Django application to process SSI includes.
 
 [![PyPI](https://img.shields.io/pypi/v/ssi-views.svg)](https://pypi.org/project/ssi-views/)
 [![Build Status](https://github.com/dldevinc/ssi-views/actions/workflows/tests.yml/badge.svg)](https://github.com/dldevinc/ssi-views)
@@ -8,8 +8,8 @@ A simple Django application to process SSI includes
 
 ## Compatibility
 
+-   `python` >= 3.9
 -   `django` >= 3.2
--   `python` >= 3.7
 
 ## Features
 
@@ -19,20 +19,18 @@ A simple Django application to process SSI includes
 
 ## Installation
 
-Install the package via Pip:
+Install the latest release with pip:
 
-```
+```shell
 pip install ssi-views
 ```
 
-Add it to your `INSTALLED_APPS` list:
+Add `ssi_views` to your INSTALLED_APPS in django's `settings.py`:
 
 ```python
-INSTALLED_APPS = (
-    # ...
+INSTALLED_APPS = [
     "ssi_views",
-    # ...
-)
+]
 ```
 
 Add `ssi_views.urls` to your URLconf:
@@ -137,16 +135,4 @@ The usage is similar to Django, except that `ssi_url` is a global function:
 
 ```jinja2
 <!--# include virtual="{{ ssi_url('myapp.form') }}" -->
-```
-
-## Development and Testing
-
-After cloning the Git repository, you should install this
-in a virtualenv and set up for development:
-
-```shell script
-virtualenv .venv
-source .venv/bin/activate
-pip install -r ./requirements.txt
-pre-commit install
 ```

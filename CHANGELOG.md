@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.6.0](https://github.com/dldevinc/ssi-views/tree/v0.6.0) - 2024-12-20
+
+### ⚠ BREAKING CHANGES
+
+-   Dropped support for Python versions older than 3.9.
+
+
 ## [0.5.0](https://github.com/dldevinc/ssi-views/tree/v0.5.0) - 2023-12-20
 
 ### ⚠ BREAKING CHANGES

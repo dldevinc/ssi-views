@@ -1,3 +1,3 @@
 import logging
 
-logger = logging.getLogger("ssi_views")
+logger = logging.getLogger("ssi-views")

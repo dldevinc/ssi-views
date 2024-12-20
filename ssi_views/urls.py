@@ -6,6 +6,7 @@ from .registry import registry
 from .views import router
 
 if django.VERSION >= (4, 1):  # noqa
+
     class SSIURLPattern(URLPattern):
         def resolve(self, path):
             match = self.pattern.match(path)
@@ -32,13 +33,15 @@ if django.VERSION >= (4, 1):  # noqa
     def ssi_url(regex, view, kwargs=None, name=None):
         pattern = RegexPattern(regex, name=name, is_endpoint=True)
         return SSIURLPattern(pattern, view, kwargs, name)
+
 else:
+
     class SSIURLPattern(URLPattern):
         def resolve(self, path):
             match = self.pattern.match(path)
             if match:
                 new_path, args, kwargs = match
-                name = kwargs.pop('name')
+                name = kwargs.pop("name")
                 if name not in registry:
                     return
                 view = registry[name]
